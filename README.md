@@ -58,6 +58,10 @@ With the [ECMA Internationalization API](https://www.ecma-international.org/ecma
 
     cordova plugin add cordova-plugin-globalization
 
+### Compatibility Note
+
+This fork has been minimally modernized for current Cordova native platforms and has been lint-validated against the plugin sources used by `cordova-android@15` and `cordova-ios@8`. The Android implementation no longer relies on deprecated `android.text.format.Time`, and the iOS option parsing accepts immutable `NSDictionary` payloads from Cordova JSON arguments.
+
 ## Objects
 
 - GlobalizationError

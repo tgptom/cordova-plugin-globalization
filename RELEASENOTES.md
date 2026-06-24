@@ -20,6 +20,11 @@
 -->
 # Release Notes
 
+### 1.11.1-dev
+* Modernize Android date/time handling for current Cordova Android releases by removing deprecated `android.text.format.Time` usage and obsolete legacy SDK checks
+* Accept immutable `NSDictionary` option payloads in the iOS native implementation for current Cordova iOS releases
+* Document compatibility notes for `cordova-android@15` and `cordova-ios@8`
+
 ### 1.11.0 (Apr 12, 2018)
 * Updating `moment.js` to version 2.20.1 (#64)
 
