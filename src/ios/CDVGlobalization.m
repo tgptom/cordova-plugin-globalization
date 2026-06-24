@@ -121,7 +121,7 @@
 
     // see if any options have been specified
     id items = [options valueForKey:@"options"];
-    if (items && [items isKindOfClass:[NSMutableDictionary class]]) {
+    if (items && [items isKindOfClass:[NSDictionary class]]) {
         NSEnumerator* enumerator = [items keyEnumerator];
         id key;
 
@@ -220,7 +220,7 @@
 
     // see if any options have been specified
     id items = [options valueForKey:@"options"];
-    if (items && [items isKindOfClass:[NSMutableDictionary class]]) {
+    if (items && [items isKindOfClass:[NSDictionary class]]) {
         NSEnumerator* enumerator = [items keyEnumerator];
         id key;
 
@@ -339,7 +339,7 @@
     // see if any options have been specified
     id items = [options valueForKey:@"options"];
 
-    if (items && [items isKindOfClass:[NSMutableDictionary class]]) {
+    if (items && [items isKindOfClass:[NSDictionary class]]) {
         NSEnumerator* enumerator = [items keyEnumerator];
         id key;
 
@@ -439,7 +439,7 @@
     // see if any options have been specified
     id items = [options valueForKey:@"options"];
 
-    if (items && [items isKindOfClass:[NSMutableDictionary class]]) {
+    if (items && [items isKindOfClass:[NSDictionary class]]) {
         NSEnumerator* enumerator = [items keyEnumerator];
         id key;
 
@@ -594,7 +594,7 @@
 
     // see if any options have been specified
     id items = [options valueForKey:@"options"];
-    if (items && [items isKindOfClass:[NSMutableDictionary class]]) {
+    if (items && [items isKindOfClass:[NSDictionary class]]) {
         NSEnumerator* enumerator = [items keyEnumerator];
         id key;
 
@@ -671,7 +671,7 @@
 
     // see if any options have been specified
     id items = [options valueForKey:@"options"];
-    if (items && [items isKindOfClass:[NSMutableDictionary class]]) {
+    if (items && [items isKindOfClass:[NSDictionary class]]) {
         NSEnumerator* enumerator = [items keyEnumerator];
         id key;
 
@@ -750,7 +750,7 @@
     // see if any options have been specified
     id items = [options valueForKey:@"options"];
 
-    if (items && [items isKindOfClass:[NSMutableDictionary class]]) {
+    if (items && [items isKindOfClass:[NSDictionary class]]) {
         NSEnumerator* enumerator = [items keyEnumerator];
         id key;
 

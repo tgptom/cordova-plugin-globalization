@@ -40,9 +40,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.annotation.TargetApi;
-import android.text.format.Time;
-
 /**
  *
  */
@@ -102,11 +99,7 @@ public class Globalization extends CordovaPlugin  {
             }else if(action.equalsIgnoreCase(GETDATEPATTERN)){
                 obj = getDatePattern(data);
             }else if(action.equalsIgnoreCase(GETDATENAMES)){
-                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.GINGERBREAD) {
-                    throw new GlobalizationError(GlobalizationError.UNKNOWN_ERROR);
-                } else {
-                    obj = getDateNames(data);
-                }
+                obj = getDateNames(data);
             }else if(action.equalsIgnoreCase(ISDAYLIGHTSAVINGSTIME)){
                 obj = getIsDayLightSavingsTime(data);
             }else if(action.equalsIgnoreCase(GETFIRSTDAYOFWEEK)){
@@ -270,17 +263,16 @@ public class Globalization extends CordovaPlugin  {
             //attempt parsing string based on user preferences
             date = fmt.parse(options.getJSONObject(0).get(DATESTRING).toString());
 
-            //set Android Time object
-            Time time = new Time();
-            time.set(date.getTime());
+            Calendar time = Calendar.getInstance();
+            time.setTime(date);
 
             //return properties;
-            obj.put("year", time.year);
-            obj.put("month", time.month);
-            obj.put("day", time.monthDay);
-            obj.put("hour", time.hour);
-            obj.put("minute", time.minute);
-            obj.put("second", time.second);
+            obj.put("year", time.get(Calendar.YEAR));
+            obj.put("month", time.get(Calendar.MONTH));
+            obj.put("day", time.get(Calendar.DAY_OF_MONTH));
+            obj.put("hour", time.get(Calendar.HOUR_OF_DAY));
+            obj.put("minute", time.get(Calendar.MINUTE));
+            obj.put("second", time.get(Calendar.SECOND));
             obj.put("millisecond", Long.valueOf(0));
             return obj;
         }catch(Exception ge){
@@ -341,9 +333,7 @@ public class Globalization extends CordovaPlugin  {
                 }
             }
 
-            //TimeZone from users device
-            //TimeZone tz = Calendar.getInstance(Locale.getDefault()).getTimeZone(); //substitute method
-            TimeZone tz = TimeZone.getTimeZone(Time.getCurrentTimezone());
+            TimeZone tz = TimeZone.getDefault();
 
             obj.put("pattern", fmt);
             obj.put("timezone", tz.getDisplayName(tz.inDaylightTime(Calendar.getInstance().getTime()),TimeZone.SHORT));
@@ -367,7 +357,6 @@ public class Globalization extends CordovaPlugin  {
      *
      * @throws: GlobalizationError.UNKNOWN_ERROR
     */
-    @TargetApi(9)
     private JSONObject getDateNames(JSONArray options) throws GlobalizationError{
         JSONObject obj = new JSONObject();
         //String[] value;
@@ -441,8 +430,7 @@ public class Globalization extends CordovaPlugin  {
         boolean dst = false;
         try{
             Date date = new Date((Long)options.getJSONObject(0).get(DATE));
-            //TimeZone tz = Calendar.getInstance(Locale.getDefault()).getTimeZone();
-            TimeZone tz = TimeZone.getTimeZone(Time.getCurrentTimezone());
+            TimeZone tz = TimeZone.getDefault();
             dst = tz.inDaylightTime(date); //get daylight savings data from date object and user timezone settings
 
             return obj.put("dst",dst);
